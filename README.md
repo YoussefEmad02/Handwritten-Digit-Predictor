@@ -19,6 +19,8 @@ For the easiest setup experience, use our interactive quick start script:
 ```bash
 # Double-click quick_start.bat or run:
 quick_start.bat
+# or run:
+python quick_start.py
 ```
 
 **macOS/Linux users:**
