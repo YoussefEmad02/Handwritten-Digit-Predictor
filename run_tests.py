@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test runner for the Handwritten Digit Predictor.
+Test runner for the Handwritten Digit Recognizer.
 
 This script runs all unit tests and provides a summary of results.
 """
@@ -30,7 +30,7 @@ def run_tests():
 def main():
     """Main function to run tests."""
     print("=" * 60)
-    print("Running Handwritten Digit Predictor Tests")
+    print("Running Handwritten Digit Recognizer Tests")
     print("=" * 60)
     
     # Run tests

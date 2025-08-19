@@ -1,13 +1,13 @@
 # Handwritten Digit Recognition
 
-A Python application that predicts handwritten digits (0-9) drawn on a canvas using a deep learning model trained on the MNIST dataset.
+A Python application that recognizes handwritten digits (0-9) drawn on a canvas using a deep learning model trained on the MNIST dataset.
 
 ## Features
 
 - **High Accuracy**: ≥99% test accuracy on MNIST dataset
-- **Interactive GUI**: Draw digits with mouse and get instant predictions
+- **Interactive GUI**: Draw digits with mouse and get instant recognition
 - **Modular Design**: Clean, organized code structure with separate modules
-- **Real-time Inference**: Fast prediction (<50ms on CPU)
+- **Real-time Inference**: Fast recognition (<50ms on CPU)
 - **Robust Preprocessing**: Handles various stroke styles and positions
 
 ## Quick Start
@@ -71,13 +71,13 @@ python -m src.gui
 ```
 This will:
 - Open a drawing canvas where you can draw digits
-- Click "Predict" to get digit predictions with probabilities
+- Click "Recognize" to get digit recognition with probabilities
 - Use "Clear" to erase the canvas
 
 ## Project Structure
 
 ```
-handwrite_Recognition/
+handwrite_recognition/
 ├── README.md                 # This file
 ├── requirements.txt          # Python dependencies
 ├── quick_start.py            # Interactive setup guide
@@ -136,7 +136,7 @@ The preprocessing converts drawn canvas images to MNIST-compatible format:
 python -m src.train
 ```
 
-**Poor Prediction Accuracy**: 
+**Poor Recognition Accuracy**: 
 - Ensure the digit is drawn clearly in the center of the canvas
 - Try drawing with consistent stroke thickness
 - Make sure the digit fills most of the canvas area
@@ -148,7 +148,7 @@ python -m src.train
 ### Performance Tips
 
 - For faster inference, the model automatically uses GPU if available
-- The GUI is optimized for real-time drawing and prediction
+- The GUI is optimized for real-time drawing and recognition
 - Model loading happens once at startup for optimal performance
 
 ## CLI Commands

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Demo script for the Handwritten Digit Predictor.
+Demo script for the Handwritten Digit Recognizer.
 
 This script demonstrates the model's capabilities by creating synthetic
-digits and showing predictions.
+digits and showing recognition results.
 """
 
 import sys
@@ -32,7 +32,7 @@ def create_demo_digits():
 
 
 def visualize_digits(digits, predictions=None, probabilities=None):
-    """Visualize the synthetic digits and predictions."""
+    """Visualize the synthetic digits and recognition results."""
     fig, axes = plt.subplots(2, 5, figsize=(15, 6))
     axes = axes.ravel()
     
@@ -52,7 +52,7 @@ def visualize_digits(digits, predictions=None, probabilities=None):
         if predictions is not None and probabilities is not None:
             pred = predictions[i]
             prob = probabilities[i]
-            title = f"True: {i}\nPred: {pred}\nConf: {prob:.2%}"
+            title = f"True: {i}\nRec: {pred}\nConf: {prob:.2%}"
         else:
             title = f"Digit {i}"
         
@@ -66,7 +66,7 @@ def visualize_digits(digits, predictions=None, probabilities=None):
 def run_demo():
     """Run the complete demonstration."""
     print("=" * 60)
-    print("Handwritten Digit Predictor Demo")
+    print("Handwritten Digit Recognizer Demo")
     print("=" * 60)
     
     # Check if model exists
@@ -85,17 +85,17 @@ def run_demo():
         predictor = DigitPredictor()
         print("✅ Model loaded successfully!")
         
-        # Make predictions
-        print("Making predictions...")
+        # Make recognitions
+        print("Recognizing digits...")
         predictions = []
         probabilities = []
         
         for i, digit_tensor in enumerate(digits):
             pred, probs = predictor.predict(digit_tensor)
             predictions.append(pred)
-            probabilities.append(probs[pred])  # Confidence for predicted class
+            probabilities.append(probs[pred])  # Confidence for recognized class
             
-            print(f"  Digit {i}: Predicted {pred} (confidence: {probs[pred]:.2%})")
+            print(f"  Digit {i}: Recognized {pred} (confidence: {probs[pred]:.2%})")
         
         # Calculate accuracy
         correct = sum(1 for i, pred in enumerate(predictions) if pred == i)
@@ -115,7 +115,7 @@ def run_demo():
             confidence = probabilities[i]
             status = "✅" if true_digit == pred_digit else "❌"
             
-            print(f"{status} True: {true_digit}, Predicted: {pred_digit}, "
+            print(f"{status} True: {true_digit}, Recognized: {pred_digit}, "
                   f"Confidence: {confidence:.2%}")
         
     except Exception as e:

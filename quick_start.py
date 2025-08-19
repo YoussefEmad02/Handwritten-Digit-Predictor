@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quick start script for the Handwritten Digit Predictor.
+Quick start script for the Handwritten Digit Recognizer.
 
 This script provides an interactive setup guide for new users.
 """
@@ -13,7 +13,7 @@ from pathlib import Path
 def print_banner():
     """Print the application banner."""
     print("=" * 70)
-    print("🤖 Handwritten Digit Predictor - Quick Start Guide")
+    print("🤖 Handwritten Digit Recognizer - Quick Start Guide")
     print("=" * 70)
     print()
     print("This application recognizes handwritten digits (0-9) using")
@@ -268,7 +268,7 @@ def main():
     print("\n" + "=" * 70)
     print("🎉 Quick start completed successfully!")
     print("=" * 70)
-    print("\nYour Handwritten Digit Predictor is ready to use!")
+    print("\nYour Handwritten Digit Recognizer is ready to use!")
     print("\nQuick reference:")
     print("  - Activate environment: venv\\Scripts\\activate (Windows) or source venv/bin/activate (Unix)")
     print("  - Train model: python -m src.train")

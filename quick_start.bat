@@ -4,7 +4,7 @@ REM This file launches the quick start script
 
 echo.
 echo ================================================================
-echo 🤖 Handwritten Digit Predictor - Quick Start (Windows)
+echo 🤖 Handwritten Digit Recognizer - Quick Start (Windows)
 echo ================================================================
 echo.
 

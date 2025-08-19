@@ -2,7 +2,7 @@
 Unit tests for the inference module.
 
 These tests verify that the inference functions correctly load models
-and make predictions on preprocessed images.
+and perform recognition on preprocessed images.
 """
 
 import unittest
@@ -90,7 +90,7 @@ class TestInference(unittest.TestCase):
             print(f"Model loading failed (acceptable): {e}")
     
     def test_prediction_functionality(self):
-        """Test prediction functionality with synthetic data."""
+        """Test recognition functionality with synthetic data."""
         try:
             predictor = DigitPredictor(model_path=self.test_model_path)
             
@@ -119,10 +119,10 @@ class TestInference(unittest.TestCase):
             
         except Exception as e:
             # If it fails, it's likely due to device issues, which is acceptable
-            print(f"Prediction test failed (acceptable): {e}")
+            print(f"Recognition test failed (acceptable): {e}")
     
     def test_confidence_prediction(self):
-        """Test prediction with confidence threshold."""
+        """Test recognition with confidence threshold."""
         try:
             predictor = DigitPredictor(model_path=self.test_model_path)
             
@@ -151,10 +151,10 @@ class TestInference(unittest.TestCase):
                 self.assertEqual(is_confident, expected_confident)
                 
         except Exception as e:
-            print(f"Confidence prediction test failed (acceptable): {e}")
+            print(f"Confidence recognition test failed (acceptable): {e}")
     
     def test_top_predictions(self):
-        """Test top-k predictions functionality."""
+        """Test top-k recognition functionality."""
         try:
             predictor = DigitPredictor(model_path=self.test_model_path)
             
@@ -169,7 +169,7 @@ class TestInference(unittest.TestCase):
                 self.assertIsInstance(top_predictions, list)
                 self.assertEqual(len(top_predictions), k)
                 
-                # Check each prediction
+                # Check each recognition
                 for i, (digit, prob) in enumerate(top_predictions):
                     self.assertIsInstance(digit, int)
                     self.assertIsInstance(prob, float)
@@ -183,10 +183,10 @@ class TestInference(unittest.TestCase):
                 self.assertEqual(probs, sorted(probs, reverse=True))
                 
         except Exception as e:
-            print(f"Top predictions test failed (acceptable): {e}")
+            print(f"Top recognition test failed (acceptable): {e}")
     
     def test_batch_prediction(self):
-        """Test batch prediction functionality."""
+        """Test batch recognition functionality."""
         try:
             predictor = DigitPredictor(model_path=self.test_model_path)
             
@@ -195,7 +195,7 @@ class TestInference(unittest.TestCase):
                 create_synthetic_digit(i) for i in range(3)
             ]
             
-            # Make batch prediction
+            # Make batch recognition
             results = predictor.batch_predict(test_images)
             
             # Check output
@@ -210,7 +210,7 @@ class TestInference(unittest.TestCase):
                 self.assertEqual(len(probabilities), 10)
                 
         except Exception as e:
-            print(f"Batch prediction test failed (acceptable): {e}")
+            print(f"Batch recognition test failed (acceptable): {e}")
     
     def test_device_handling(self):
         """Test device handling and fallback."""

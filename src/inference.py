@@ -1,8 +1,8 @@
 """
 Inference module for handwritten digit recognition.
 
-This module provides functions to load the trained model and make
-predictions on preprocessed images.
+This module provides functions to load the trained model and perform
+recognition on preprocessed images.
 """
 
 import torch
@@ -18,7 +18,7 @@ from .preprocess import preprocess_canvas_image
 
 class DigitPredictor:
     """
-    Class for making digit predictions using a trained model.
+    Class for digit recognition using a trained model.
     """
     
     def __init__(self, model_path: Optional[Path] = None, device: Optional[str] = None):
@@ -101,7 +101,7 @@ class DigitPredictor:
     
     def predict(self, image) -> Tuple[int, List[float]]:
         """
-        Predict digit from a preprocessed image.
+        Recognize a digit from a preprocessed image.
         
         Args:
             image: Preprocessed image tensor or PIL Image
@@ -144,11 +144,11 @@ class DigitPredictor:
     
     def predict_with_confidence(self, image, confidence_threshold: float = 0.5) -> Tuple[int, float, bool]:
         """
-        Predict digit with confidence threshold.
+        Recognize a digit with a confidence threshold.
         
         Args:
             image: Preprocessed image
-            confidence_threshold: Minimum confidence for prediction
+            confidence_threshold: Minimum confidence for recognition
             
         Returns:
             Tuple of (predicted_digit, confidence, is_confident)
@@ -162,11 +162,11 @@ class DigitPredictor:
     
     def get_top_predictions(self, image, top_k: int = 3) -> List[Tuple[int, float]]:
         """
-        Get top-k predictions with probabilities.
+        Get top-k recognition candidates with probabilities.
         
         Args:
             image: Preprocessed image
-            top_k: Number of top predictions to return
+            top_k: Number of top candidates to return
             
         Returns:
             List of (digit, probability) tuples sorted by probability
@@ -183,7 +183,7 @@ class DigitPredictor:
     
     def batch_predict(self, images: List) -> List[Tuple[int, List[float]]]:
         """
-        Make predictions on a batch of images.
+        Perform recognition on a batch of images.
         
         Args:
             images: List of preprocessed images
@@ -207,7 +207,7 @@ class DigitPredictor:
         # Stack into batch
         batch = torch.stack(processed_images).to(self.device)
         
-        # Make predictions
+        # Make recognitions
         with torch.no_grad():
             output = self.model(batch)
             probabilities = torch.softmax(output, dim=1)
@@ -266,13 +266,13 @@ def test_inference():
         # Create test digit
         test_tensor = create_synthetic_digit(3)
         
-        # Make prediction
+        # Make recognition
         predicted_digit, probabilities = predictor.predict(test_tensor)
         
-        print(f"Test prediction successful!")
+        print(f"Test recognition successful!")
         print(f"Input: synthetic digit '3'")
-        print(f"Predicted: {predicted_digit}")
-        print(f"Top-3 probabilities:")
+        print(f"Recognized: {predicted_digit}")
+        print(f"Top-3 recognition probabilities:")
         
         top_predictions = predictor.get_top_predictions(test_tensor, top_k=3)
         for digit, prob in top_predictions:

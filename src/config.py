@@ -1,5 +1,5 @@
 """
-Configuration settings for the Handwritten Digit Predictor.
+Configuration settings for the Handwritten Digit Recognizer.
 
 This module contains all the configurable parameters for training,
 model architecture, and inference.

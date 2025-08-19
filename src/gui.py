@@ -2,7 +2,7 @@
 Tkinter GUI for handwritten digit recognition.
 
 This module provides a user-friendly interface where users can draw digits
-on a canvas and get real-time predictions from the trained model.
+on a canvas and get real-time recognition results from the trained model.
 """
 
 import tkinter as tk
@@ -303,7 +303,7 @@ class DigitRecognitionGUI:
         
         # Subtitle - smaller font
         subtitle_label = tk.Label(header_frame,
-                                 text="Draw a digit and watch the AI predict it in real-time!",
+                                 text="Draw a digit and watch the AI recognize it in real-time!",
                                  font=('Segoe UI', 9),
                                  fg=ModernStyle.TEXT_LIGHT,
                                  bg=ModernStyle.PRIMARY,
@@ -378,7 +378,7 @@ class DigitRecognitionGUI:
         
         # Predict button - smaller padding
         self.predict_button = ModernButton(controls_section, 
-                                          text="🚀 Predict Digit",
+                                          text="🚀 Recognize Digit",
                                           command=self.predict_digit,
                                           state='disabled')
         self.predict_button.pack(fill=tk.X, pady=6)
@@ -404,12 +404,12 @@ class DigitRecognitionGUI:
         right_panel.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
         
         # Results section - smaller padding
-        results_section = ModernLabelFrame(right_panel, text="🎯 Prediction Results")
+        results_section = ModernLabelFrame(right_panel, text="🎯 Recognition Results")
         results_section.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         
         # Prediction display with modern styling - smaller font and padding
         self.prediction_label = tk.Label(results_section, 
-                                        text="Draw a digit and click Predict! 🎨",
+                                        text="Draw a digit and click Recognize! 🎨",
                                         font=('Segoe UI', 16, 'bold'),
                                         fg=ModernStyle.TEXT_PRIMARY,
                                         bg=ModernStyle.BG_SECONDARY,
@@ -426,7 +426,7 @@ class DigitRecognitionGUI:
         
         # Top-3 predictions - smaller font and padding
         top3_label = tk.Label(results_section,
-                             text="Top 3 Predictions:",
+                             text="Top 3 Recognitions:",
                              font=('Segoe UI', 10, 'bold'),
                              fg=ModernStyle.TEXT_PRIMARY,
                              bg=ModernStyle.BG_SECONDARY)
@@ -522,7 +522,7 @@ class DigitRecognitionGUI:
                            "python -m src.train")
     
     def predict_digit(self):
-        """Predict the digit drawn on the canvas."""
+        """Recognize the digit drawn on the canvas."""
         if not self.model_loaded:
             messagebox.showerror("Error", "Model not loaded yet. Please wait.")
             return
@@ -537,11 +537,11 @@ class DigitRecognitionGUI:
                 messagebox.showwarning("Warning", "Please draw a digit first.")
                 return
             
-            # Make prediction
+            # Make recognition
             predicted_digit, probabilities = self.predictor.predict(canvas_image)
             
-            # Update prediction display with emojis and colors
-            self.prediction_label.config(text=f"🎯 Predicted: {predicted_digit}")
+            # Update recognition display with emojis and colors
+            self.prediction_label.config(text=f"🎯 Recognized: {predicted_digit}")
             
             # Update confidence display with color coding
             confidence = probabilities[predicted_digit]
@@ -560,30 +560,30 @@ class DigitRecognitionGUI:
                 fg=confidence_color
             )
             
-            # Update top-3 predictions
+            # Update top-3 recognitions
             self.update_top3_display(probabilities)
             
             # Update preprocessed image preview
             self.update_preview(canvas_image)
             
         except Exception as e:
-            error_msg = f"Prediction failed: {e}"
-            messagebox.showerror("Prediction Error", error_msg)
+            error_msg = f"Recognition failed: {e}"
+            messagebox.showerror("Recognition Error", error_msg)
     
     def update_top3_display(self, probabilities: list):
-        """Update the top-3 predictions display with modern styling."""
+        """Update the top-3 recognition candidates display with modern styling."""
         # Clear existing widgets
         for widget in self.top3_frame.winfo_children():
             widget.destroy()
         
-        # Get top-3 predictions
+        # Get top-3 recognition candidates
         top3_indices = np.argsort(probabilities)[-3:][::-1]
         
         # Create labels for top-3 with modern styling
         for i, idx in enumerate(top3_indices):
             prob = probabilities[idx]
             
-            # Color coding for top predictions
+            # Color coding for top recognition candidates
             if i == 0:
                 color = ModernStyle.SUCCESS
                 emoji = "🥇"
