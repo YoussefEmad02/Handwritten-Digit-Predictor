@@ -1,4 +1,4 @@
-# Handwritten Digit Predictor
+# Handwritten Digit Recognition
 
 A Python application that predicts handwritten digits (0-9) drawn on a canvas using a deep learning model trained on the MNIST dataset.
 
@@ -77,7 +77,7 @@ This will:
 ## Project Structure
 
 ```
-handwrite_predictor/
+handwrite_Recognition/
 ├── README.md                 # This file
 ├── requirements.txt          # Python dependencies
 ├── quick_start.py            # Interactive setup guide
